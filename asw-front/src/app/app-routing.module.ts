@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainViewComponent } from './main-view/main-view.component';
+import { NewestViewComponent } from './newest-view/newest-view.component';
 
 const routes: Routes = [
-  { path: 'page', component: MainViewComponent}
+  {path: 'view-newest', component: NewestViewComponent}
 ];
 
 
