@@ -17,4 +17,12 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['view-newest'])
   }
 
+  public getAsk():void {
+    this.router.navigate(['ask'])
+  }
+
+  public getShow():void {
+    this.router.navigate(['show'])
+  }
+
 }
