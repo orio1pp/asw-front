@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { NewestControllerComponent } from './newest-controller/newest-controller
 import { NewestViewComponent } from './newest-view/newest-view.component';
 import { ShowControllerComponent } from './show-controller/show-controller.component';
 import { ShowComponent } from './show/show.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,14 @@ import { ShowComponent } from './show/show.component';
     AskComponent,
     AskControllerComponent,
     ShowComponent,
-    ShowControllerComponent
+    ShowControllerComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [NewestControllerComponent, AskControllerComponent, ShowControllerComponent],
   bootstrap: [AppComponent]

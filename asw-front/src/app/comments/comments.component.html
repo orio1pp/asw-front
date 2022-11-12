@@ -1,0 +1,19 @@
+<div *ngIf="isNotReply">
+    <h2>Comment here</h2>
+    <textarea [(ngModel)]="text2" cols="80" rows="2" ></textarea>
+    <br/>
+    <button (click)="addComment(text2)">comment</button>
+    <div><hr></div>
+</div>
+<div *ngFor="let comment of comments.reverse()">
+    <label>{{comment.text}}</label>    
+    <br>
+    <button (click)="openCommentText(comment)">reply</button>
+    <div *ngIf="comment.isOpen">
+        <textarea [(ngModel)]="text" cols="80" rows="2"></textarea>
+        <br>
+        <button (click)="addReply(comment)">comment</button>
+        <button (click)="cancel(comment)">cancel</button>
+    </div>
+    <app-comments [comments]="comment.replys" [isNotReply]="false" ></app-comments>
+</div>
