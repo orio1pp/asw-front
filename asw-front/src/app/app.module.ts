@@ -11,6 +11,8 @@ import { NewestControllerComponent } from './newest-controller/newest-controller
 import { NewestViewComponent } from './newest-view/newest-view.component';
 import { ShowControllerComponent } from './show-controller/show-controller.component';
 import { ShowComponent } from './show/show.component';
+import { SubmissionControllerComponent } from './submission-controller/submission-controller.component';
+import { SubmissionComponent } from './submission/submission.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +23,16 @@ import { ShowComponent } from './show/show.component';
     AskComponent,
     AskControllerComponent,
     ShowComponent,
-    ShowControllerComponent
+    ShowControllerComponent,
+    SubmissionComponent,
+    SubmissionControllerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [NewestControllerComponent, AskControllerComponent, ShowControllerComponent],
+  providers: [NewestControllerComponent, AskControllerComponent, ShowControllerComponent, SubmissionControllerComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
