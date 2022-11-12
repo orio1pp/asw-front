@@ -5,19 +5,16 @@ import { ShowControllerComponent } from '../show-controller/show-controller.comp
 @Component({
   selector: 'app-show',
   templateUrl: './show.component.html',
-  styleUrls: ['./show.component.css']
+  styleUrls: ['./show.component.css'],
 })
 export class ShowComponent implements OnInit {
+  show: News[] = [];
 
-  show : News[] = [];
+  constructor(private showControllerComponent: ShowControllerComponent) {}
 
-  constructor(private showControllerComponent: ShowControllerComponent) { }
-  
   ngOnInit(): void {
-     this.showControllerComponent.getShow().then(data => {
-      this.show = data
-      console.log(data);
-     })
+    this.showControllerComponent.getShow().then((data) => {
+      this.show = data;
+    });
   }
-
 }

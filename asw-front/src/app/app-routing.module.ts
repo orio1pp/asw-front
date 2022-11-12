@@ -4,17 +4,18 @@ import { AskComponent } from './ask/ask.component';
 import { NewestViewComponent } from './newest-view/newest-view.component';
 import { ShowComponent } from './show/show.component';
 import { SubmissionComponent } from './submission/submission.component';
+import { ThreadsComponent } from './threads/threads.component';
 
 const routes: Routes = [
-  {path: 'view-newest', component: NewestViewComponent},
-  {path: 'ask', component: AskComponent},
-  {path: 'show', component: ShowComponent},
-  {path: 'submission', component: SubmissionComponent},
+  { path: 'view-newest', component: NewestViewComponent },
+  { path: 'ask', component: AskComponent },
+  { path: 'show', component: ShowComponent },
+  { path: 'submission', component: SubmissionComponent },
+  { path: 'threads', component: ThreadsComponent },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -13,6 +13,8 @@ import { ShowControllerComponent } from './show-controller/show-controller.compo
 import { ShowComponent } from './show/show.component';
 import { SubmissionControllerComponent } from './submission-controller/submission-controller.component';
 import { SubmissionComponent } from './submission/submission.component';
+import { ThreadsControllerComponent } from './threads-controller/threads-controller.component';
+import { ThreadsComponent } from './threads/threads.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { SubmissionComponent } from './submission/submission.component';
     ShowControllerComponent,
     SubmissionComponent,
     SubmissionControllerComponent,
+    ThreadsComponent,
+    ThreadsControllerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
@@ -33,6 +37,7 @@ import { SubmissionComponent } from './submission/submission.component';
     AskControllerComponent,
     ShowControllerComponent,
     SubmissionControllerComponent,
+    ThreadsControllerComponent,
   ],
   bootstrap: [AppComponent],
 })
