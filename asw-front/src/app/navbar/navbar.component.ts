@@ -17,4 +17,12 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['view-newest'])
   }
 
+  public getSubmit():void{
+    this.router.navigate(['submit-view']);
+  }
+
+  public getProfile():void{
+    this.router.navigate(['profile-view'])
+  }
+
 }

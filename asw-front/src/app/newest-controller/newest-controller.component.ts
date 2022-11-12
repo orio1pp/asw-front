@@ -12,7 +12,6 @@ export class NewestControllerComponent implements OnInit {
   constructor(private newsService: NewsService) { }
   news: News[] = []
   ngOnInit(): void {
-    console.log("caca")
     this.getNewest()
   }
 
