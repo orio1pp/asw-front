@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NewestControllerComponent } from './newest-controller/newest-controller.component';
 import { NewestViewComponent } from './newest-view/newest-view.component';
+import { AskComponent } from './ask/ask.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     NewestViewComponent,
-    NewestControllerComponent
+    NewestControllerComponent,
+    AskComponent
   ],
   imports: [
     BrowserModule,
