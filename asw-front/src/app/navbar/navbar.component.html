@@ -3,9 +3,9 @@
         <ul class="nav-links">
             <li class="nav-item"><a id="hacker-news" href="">Hacker News</a></li>
             <li class="nav-item"><a (click) = "getNews()">new</a></li> 
-            <li class="nav-item"><a onclick="getThreads('threads')">threads</a></li>
-            <li class="nav-item"><a onclick="getNews('ask')">ask</a></li>
-            <li class="nav-item"><a onclick="getNews('show')">show</a></li>
+            <li class="nav-item"><a (click)="getThreads()">threads</a></li>
+            <li class="nav-item"><a (click)="getAsk()">ask</a></li>
+            <li class="nav-item"><a (click)="getShow()">show</a></li>
             <li class="nav-item"><a (click)="getSubmit()">submit</a></li>
             <li class="nav-item"><a (click)="getProfile()">profile</a></li>
         </ul>

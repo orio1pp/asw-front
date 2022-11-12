@@ -11,16 +11,18 @@ import { VotedSubmissionsViewComponent } from './voted-submissions-view/voted-su
 const routes: Routes = [
   {path: 'view-newest', component: NewestViewComponent},
   {path: 'submit-view', component: SubmitViewComponent},
+  {path: 'ask', component: AskComponent },
   {path: 'profile-view', component: ProfileViewComponent},
+  {path: 'show', component: ShowComponent },
   {path: 'submissions', component: SubmissionsViewComponent},
   {path: 'comments', component: CommentsViewComponent},
   {path: 'votedSubmissions', component: VotedSubmissionsViewComponent},
+  {path: 'threads', component: ThreadsComponent },
   {path: 'votedComments', component: VotedCommentsViewComponent}
 ];
 
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

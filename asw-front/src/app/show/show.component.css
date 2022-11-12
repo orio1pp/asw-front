@@ -35,7 +35,7 @@
   padding: 1rem 0.75rem;
   display: block;
 }
-#news {
+.news {
   width: 80%;
   margin: 1rem auto;
   background-color: #f9f7f7;
