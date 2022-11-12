@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AskControllerComponent } from './ask-controller/ask-controller.component';
@@ -37,7 +36,7 @@ import { ThreadsComponent } from './threads/threads.component';
     SubmissionsViewComponent,
     CommentsViewComponent,
     VotedSubmissionsViewComponent,
-    VotedCommentsViewComponent
+    VotedCommentsViewComponent,
     AskComponent,
     AskControllerComponent,
     ShowComponent,
@@ -57,9 +56,6 @@ import { ThreadsComponent } from './threads/threads.component';
     ThreadsControllerComponent,
     ProfileControllerComponent
   ],
-  providers: [NewestControllerComponent,
-    SubmitControllerComponent,
-    ProfileControllerComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

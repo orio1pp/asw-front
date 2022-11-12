@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AskComponent } from './ask/ask.component';
 import { CommentsViewComponent } from './comments-view/comments-view.component';
 import { NewestViewComponent } from './newest-view/newest-view.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { ShowComponent } from './show/show.component';
+import { SubmissionComponent } from './submission/submission.component';
 import { SubmissionsViewComponent } from './submissions-view/submissions-view.component';
 import { SubmitViewComponent } from './submit-view/submit-view.component';
+import { ThreadsComponent } from './threads/threads.component';
 import { VotedCommentsViewComponent } from './voted-comments-view/voted-comments-view.component';
 import { VotedSubmissionsViewComponent } from './voted-submissions-view/voted-submissions-view.component';
 
@@ -18,7 +22,8 @@ const routes: Routes = [
   {path: 'comments', component: CommentsViewComponent},
   {path: 'votedSubmissions', component: VotedSubmissionsViewComponent},
   {path: 'threads', component: ThreadsComponent },
-  {path: 'votedComments', component: VotedCommentsViewComponent}
+  {path: 'votedComments', component: VotedCommentsViewComponent},
+  {path: 'sumbi', component: SubmissionComponent}
 ];
 
 @NgModule({
