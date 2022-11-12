@@ -80,3 +80,25 @@ p.news-info {
   color: white;
   cursor: pointer;
 }
+
+.not-liked {
+  display: block;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 1rem;
+  border: none;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-image: url("../../assets/heart-regular.svg");
+}
+
+.liked {
+  display: block;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 1rem;
+  border: none;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-image: url("../../assets/heart-solid.svg");
+}

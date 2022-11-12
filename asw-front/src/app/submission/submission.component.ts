@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { News } from '../modelos/News';
+import { User } from '../modelos/User';
 import { SubmissionControllerComponent } from '../submission-controller/submission-controller.component';
 
 @Component({
@@ -8,29 +10,10 @@ import { SubmissionControllerComponent } from '../submission-controller/submissi
   styleUrls: ['./submission.component.css'],
 })
 export class SubmissionComponent implements OnInit {
-  submission: News = {
-    itemId: -1,
-    title: '',
-    page_: '',
-    points: -1,
-    username: {
-      username: '',
-      created: new Date(),
-      karma: -1,
-      about: '',
-      maxvisit: -1,
-      minaway: -1,
-      delay: -1,
-      showdead: false,
-      noprocrast: false,
-    },
-    datePublished: '',
-    link: '',
-    text: '',
-    type: '',
-    comments: [],
-    likedBy: [],
-  };
+  submission: News;
+
+  likeClass: string = 'not-liked';
+  points: number = 0;
 
   constructor(
     private submissionControllerComponent: SubmissionControllerComponent
@@ -39,12 +22,46 @@ export class SubmissionComponent implements OnInit {
   ngOnInit(): void {
     this.submissionControllerComponent.getSubmission().then((data) => {
       this.submission = data;
+
+      let found: Boolean = false;
+      this.likeClass = 'not-liked';
+      for (let i = 0; i < this.submission.likedBy.length && !found; i++) {
+        if (
+          this.submission.likedBy[i].username ===
+          localStorage.getItem('username')
+        ) {
+          found = true;
+          this.likeClass = 'liked';
+        }
+      }
+      this.points = this.submission.likedBy.length;
     });
   }
 
-  likeBtn() {
-    let id: number;
+  ngOnChange(): void {}
+
+  loadSubmissions() {}
+
+  async likeBtn(btnid: string) {
+    let jsonSubmit = {
+      username: localStorage.getItem('username'),
+    };
+
+    const type = this.submission.type;
+    const response = await fetch(
+      'http://localhost:8081/news/' + btnid + '/like',
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonSubmit),
+      }
+    );
+    this.likeClass = this.likeClass == 'liked' ? 'not-liked' : 'liked';
+    this.points += this.likeClass == 'liked' ? 1 : -1;
   }
+
   addComment() {
     let id: number;
   }

@@ -25,14 +25,15 @@ import { SubmissionComponent } from './submission/submission.component';
     ShowComponent,
     ShowControllerComponent,
     SubmissionComponent,
-    SubmissionControllerComponent
+    SubmissionControllerComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  providers: [
+    NewestControllerComponent,
+    AskControllerComponent,
+    ShowControllerComponent,
+    SubmissionControllerComponent,
   ],
-  providers: [NewestControllerComponent, AskControllerComponent, ShowControllerComponent, SubmissionControllerComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
