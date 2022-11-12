@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Comments } from '../modelos/Comments';
 import { ThreadsControllerComponent } from '../threads-controller/threads-controller.component';
 
@@ -11,6 +12,7 @@ export class ThreadsComponent implements OnInit {
   threads: Comments[] = [];
 
   likeClass: Map<number, string> = new Map<number, string>();
+  points: Map<number, number> = new Map<number, number>();
 
   constructor(private threadsControllerComponent: ThreadsControllerComponent) {}
 
@@ -22,6 +24,7 @@ export class ThreadsComponent implements OnInit {
         let found: Boolean = false;
         let id: number = this.threads[i].id;
         this.likeClass.set(id, 'not-liked');
+        this.points.set(id, this.threads[i].likedBy.length);
 
         for (let j = 0; j < this.threads[i].likedBy.length && !found; j++) {
           if (
@@ -38,5 +41,30 @@ export class ThreadsComponent implements OnInit {
 
   goToReply(id: string) {}
 
-  likeBtn(id: any) {}
+  async likeBtn(id: string) {
+    let jsonSubmit = {
+      username: localStorage.getItem('username'),
+    };
+
+    const response = await fetch(
+      environment.BASE_URL + '/comment/' + id + '/like',
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonSubmit),
+      }
+    );
+    let numid: number = +id;
+    this.likeClass.set(
+      numid,
+      this.likeClass.get(numid) == 'liked' ? 'not-liked' : 'liked'
+    );
+    let pointsDiff: number = this.likeClass.get(numid) == 'liked' ? 1 : -1;
+    let currentPoints: number | undefined = this.points.get(numid);
+    if (typeof currentPoints === 'number') {
+      this.points.set(numid, currentPoints + pointsDiff);
+    }
+  }
 }
