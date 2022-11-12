@@ -23,11 +23,15 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['show']);
   }
 
-  public getSubmission(): void {
-    this.router.navigate(['submission']);
+  public getSubmit():void{
+    this.router.navigate(['submit-view']);
   }
 
+  public getProfile():void{
+    this.router.navigate(['profile-view'])
+  }
   public getThreads(): void {
     this.router.navigate(['threads']);
   }
+
 }

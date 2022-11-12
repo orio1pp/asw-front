@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Comments } from '../modelos/Comments';
 import { News } from '../modelos/News';
 import { User } from '../modelos/User';
 import { SubmissionControllerComponent } from '../submission-controller/submission-controller.component';
@@ -12,10 +13,9 @@ import { SubmissionControllerComponent } from '../submission-controller/submissi
 })
 export class SubmissionComponent implements OnInit {
   submission: News;
-
+  comments:Comments[] = []
   likeClass: string = 'not-liked';
   points: number = 0;
-
   constructor(
     private submissionControllerComponent: SubmissionControllerComponent
   ) {}
@@ -60,6 +60,21 @@ export class SubmissionComponent implements OnInit {
     );
     this.likeClass = this.likeClass == 'liked' ? 'not-liked' : 'liked';
     this.points += this.likeClass == 'liked' ? 1 : -1;
+  }
+
+  public htmlcode(){
+    let dynamicTemplate = `
+    <div>
+      <div>[SUPERCHRIS]</div>
+    </div>
+  `;
+    let code: string = this.getHtmlCommentaries()
+    dynamicTemplate.replace('[SUPERCHRIS]',code )
+    return dynamicTemplate;
+  }
+  
+  private getHtmlCommentaries():string{
+    return "caca";
   }
 
   addComment() {
