@@ -25,4 +25,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['show'])
   }
 
+  public getSubmission():void {
+    this.router.navigate(['submission'])
+  }
+
 }
