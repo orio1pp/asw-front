@@ -4,29 +4,30 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  public getNews(): void {
+    this.router.navigate(['view-newest']);
   }
 
-  public getNews():void {
-    this.router.navigate(['view-newest'])
+  public getAsk(): void {
+    this.router.navigate(['ask']);
   }
 
-  public getAsk():void {
-    this.router.navigate(['ask'])
+  public getShow(): void {
+    this.router.navigate(['show']);
   }
 
-  public getShow():void {
-    this.router.navigate(['show'])
+  public getSubmission(): void {
+    this.router.navigate(['submission']);
   }
 
-  public getSubmission():void {
-    this.router.navigate(['submission'])
+  public getThreads(): void {
+    this.router.navigate(['threads']);
   }
-
 }

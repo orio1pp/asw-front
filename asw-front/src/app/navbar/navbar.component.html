@@ -1,21 +1,23 @@
 <div class="main-page">
-    <div class="navbar">
-        <ul class="nav-links">
-            <li class="nav-item"><a id="hacker-news" href="">Hacker News</a></li>
-            <li class="nav-item" (click) = "getNews()">new</li>
-            <li class="nav-item"><a onclick="getThreads('threads')">threads</a></li>
-            <li class="nav-item"><a (click) = "getAsk()">ask</a></li>
-            <li class="nav-item"><a (click) ="getShow()">show</a></li>
-            <li class="nav-item"><a (click) ="getSubmission()">submit</a></li>
-        </ul>
-        <ul class="nav-log" id = "login">
-            <div id="g_id_onload"
-                 data-client_id="924920240682-32aaubm7u3ac390p3kroe29o1hpe34ef.apps.googleusercontent.com"
-                 data-callback="handleCredentialResponse">
-            </div>
-            <li class="nav-item" id = "me"><div class="g_id_signin" data-type="standard"></div></li>
-        </ul>
-    </div>
-    <div id="main-container">
-    </div>
+  <div class="navbar">
+    <ul class="nav-links">
+      <li class="nav-item"><a id="hacker-news" href="">Hacker News</a></li>
+      <li class="nav-item" (click)="getNews()">new</li>
+      <li class="nav-item"><a (click)="getThreads()">threads</a></li>
+      <li class="nav-item"><a (click)="getAsk()">ask</a></li>
+      <li class="nav-item"><a (click)="getShow()">show</a></li>
+      <li class="nav-item"><a (click)="getSubmission()">submit</a></li>
+    </ul>
+    <ul class="nav-log" id="login">
+      <div
+        id="g_id_onload"
+        data-client_id="924920240682-32aaubm7u3ac390p3kroe29o1hpe34ef.apps.googleusercontent.com"
+        data-callback="handleCredentialResponse"
+      ></div>
+      <li class="nav-item" id="me">
+        <div class="g_id_signin" data-type="standard"></div>
+      </li>
+    </ul>
+  </div>
+  <div id="main-container"></div>
 </div>
