@@ -16,6 +16,7 @@ export class ShowComponent implements OnInit {
   ngOnInit(): void {
      this.showControllerComponent.getShow().then(data => {
       this.show = data
+      console.log(data);
      })
   }
 

@@ -24,7 +24,7 @@
   color: #808080;
 }
 
-#main-container {
+.main-container {
   background-color: white;
   width: 100vw;
   position: relative;

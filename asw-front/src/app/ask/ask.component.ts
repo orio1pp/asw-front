@@ -15,6 +15,7 @@ export class AskComponent implements OnInit {
   ngOnInit(): void {
      this.askControllerComponent.getAsk().then(data => {
       this.ask = data
+      console.log(data);
      })
   }
   
