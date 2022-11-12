@@ -21,4 +21,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['ask'])
   }
 
+  public getShow():void {
+    this.router.navigate(['show'])
+  }
+
 }

@@ -21,7 +21,6 @@ export class AskControllerComponent implements OnInit {
     this.ask = []
     await this.askService.getAsk().then(data => {
       this.ask = data;
-      console.log(data);
     })
     return this.ask;
   }
