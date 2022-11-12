@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { News } from '../modelos/News';
 import { User } from '../modelos/User';
 import { SubmissionControllerComponent } from '../submission-controller/submission-controller.component';
@@ -47,9 +48,8 @@ export class SubmissionComponent implements OnInit {
       username: localStorage.getItem('username'),
     };
 
-    const type = this.submission.type;
     const response = await fetch(
-      'http://localhost:8081/news/' + btnid + '/like',
+      environment.BASE_URL + '/news/' + btnid + '/like',
       {
         method: 'PUT',
         headers: {
