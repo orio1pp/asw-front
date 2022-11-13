@@ -23,7 +23,6 @@ export class AskComponent implements OnInit {
   }
 
   goToSubmission(id: string): void {
-    console.log(id);
     localStorage.setItem('submission', id);
     this.router.navigate(['submission']);
   }

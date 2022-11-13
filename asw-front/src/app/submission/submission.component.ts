@@ -23,24 +23,27 @@ export class SubmissionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.submissionControllerComponent.getSubmission().then((data) => {
-      this.submission = data;
-      let found: Boolean = false;
-      this.likeClass = 'not-liked';
-      if (this.submission.likedBy != null) {
-        for (let i = 0; i < this.submission.likedBy.length && !found; i++) {
-          if (
-            this.submission.likedBy[i].username ===
-            localStorage.getItem('username')
-          ) {
-            found = true;
-            this.likeClass = 'liked';
+    let id: string | null = localStorage.getItem('submission');
+    if (typeof id === 'string') {
+      this.submissionControllerComponent.getSubmission(id).then((data) => {
+        this.submission = data;
+        let found: Boolean = false;
+        this.likeClass = 'not-liked';
+        if (this.submission.likedBy != null) {
+          for (let i = 0; i < this.submission.likedBy.length && !found; i++) {
+            if (
+              this.submission.likedBy[i].username ===
+              localStorage.getItem('username')
+            ) {
+              found = true;
+              this.likeClass = 'liked';
+            }
           }
+          this.points = this.submission.likedBy.length;
         }
-        this.points = this.submission.likedBy.length;
-      }
-    });
-    this.htmlcode();
+      });
+      this.htmlcode();
+    }
   }
 
   async likeBtn(btnid: string) {
