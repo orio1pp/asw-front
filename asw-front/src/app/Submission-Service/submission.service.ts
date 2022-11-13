@@ -10,21 +10,24 @@ import { News } from '../modelos/News';
 export class SubmissionService {
   constructor(private http: HttpClient) {}
 
-  public async getSubmission(id: number): Promise<News> {
+  public async getSubmission(id: string): Promise<News> {
     let submission = await this.http
       .get<News>(environment.BASE_URL + '/news/' + id)
       .toPromise();
     return submission as News;
   }
 
-  public async getComments(idNews:string): Promise<Comments>{
-    let comment = await this.http.get<Comments>(environment.BASE_URL+ "/comment/" +idNews).toPromise()
-    return comment as unknown as Comments
+  public async getComments(idNews: string): Promise<Comments> {
+    let comment = await this.http
+      .get<Comments>(environment.BASE_URL + '/comment/' + idNews)
+      .toPromise();
+    return comment as unknown as Comments;
   }
 
-  public async getCommentaries(idNews:string):Promise<number[]>{
-    let comments = await this.http.get<Comments[]>(environment.BASE_URL+ "/comments/news/" + idNews).toPromise()
-    return comments as unknown as number[]; 
+  public async getCommentaries(idNews: string): Promise<number[]> {
+    let comments = await this.http
+      .get<Comments[]>(environment.BASE_URL + '/news/' + idNews + '/comments')
+      .toPromise();
+    return comments as unknown as number[];
   }
-
 }

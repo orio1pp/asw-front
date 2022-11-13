@@ -13,34 +13,35 @@ import { SubmissionControllerComponent } from '../submission-controller/submissi
 })
 export class SubmissionComponent implements OnInit {
   submission: News;
-  comments: Comments[] = []
+  comments: Comments[] = [];
+
   likeClass: string = 'not-liked';
   points: number = 0;
+
   constructor(
     private submissionControllerComponent: SubmissionControllerComponent
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.htmlcode()
     this.submissionControllerComponent.getSubmission().then((data) => {
       this.submission = data;
-
       let found: Boolean = false;
       this.likeClass = 'not-liked';
-      for (let i = 0; i < this.submission.likedBy.length && !found; i++) {
-        if (
-          this.submission.likedBy[i].username ===
-          localStorage.getItem('username')
-        ) {
-          found = true;
-          this.likeClass = 'liked';
+      if (this.submission.likedBy != null) {
+        for (let i = 0; i < this.submission.likedBy.length && !found; i++) {
+          if (
+            this.submission.likedBy[i].username ===
+            localStorage.getItem('username')
+          ) {
+            found = true;
+            this.likeClass = 'liked';
+          }
         }
+        this.points = this.submission.likedBy.length;
       }
-      this.points = this.submission.likedBy.length;
     });
+    this.htmlcode();
   }
-
-  loadSubmissions() { }
 
   async likeBtn(btnid: string) {
     let jsonSubmit = {
@@ -60,52 +61,56 @@ export class SubmissionComponent implements OnInit {
     this.likeClass = this.likeClass == 'liked' ? 'not-liked' : 'liked';
     this.points += this.likeClass == 'liked' ? 1 : -1;
   }
-  commentsection: string = "";
-  getCommentSection(){
-    return this.commentsection
+  commentsection: string = '';
+  getCommentSection() {
+    return this.commentsection;
   }
+
   public async htmlcode() {
     let dynamicTemplate = `
     <div>
       <div>[SUPERCHRIS]</div>
     </div>
-  `
-    let idNews = localStorage.getItem("idNews");
-    idNews = "53"
+  `;
+    // let idNews: string | null = localStorage.getItem('idNews');
+    let idNews = '53';
     let commentaries;
-    await this.submissionControllerComponent.getCommentaries(idNews).then(data =>{
-      commentaries = data
-    })
-    commentaries = commentaries as unknown as Comments[]
-    for(let i = commentaries.length-1; i>-1; --i){
+    await this.submissionControllerComponent
+      .getCommentaries(idNews)
+      .then((data) => {
+        commentaries = data;
+      });
+    commentaries = commentaries as unknown as Comments[];
+    for (let i = commentaries.length - 1; i > -1; --i) {
       let comment;
-      await this.submissionControllerComponent.getComments(commentaries[i].toString()).then(data => {
-        comment = data
-      })
-      this.getHtml(comment as unknown as Comments)
+      await this.submissionControllerComponent
+        .getComments(commentaries[i].id.toString())
+        .then((data) => {
+          comment = data;
+        });
+      this.getHtml(comment as unknown as Comments);
     }
-    dynamicTemplate.replace('[SUPERCHRIS]', this.commentsection)
+    dynamicTemplate.replace('[SUPERCHRIS]', this.commentsection);
     return dynamicTemplate;
   }
-
 
   private getHtml(comment: Comments) {
     if (comment.replies.length == 0) {
       this.commentsection += `<div class="reply comment">
-      <div class="comment-info">
-          <p class="comment-points">0 points ${comment.id}</p>
-          <p class="comment-user"> by ${comment.user.username}</p>
-          <p class="comment-date"> at ${comment.time}</p>
-      </div>
-          <div class="comment-body">
-              <p class="comment-date">${comment.body}</p>
-          </div>
-      </div>
-  </div>`;
+                                <div class="comment-info">
+                                    <p class="comment-points">0 points ${comment.id}</p>
+                                    <p class="comment-user"> by ${comment.user.username}</p>
+                                    <p class="comment-date"> at ${comment.time}</p>
+                                </div>
+                                    <div class="comment-body">
+                                        <p class="comment-date">${comment.body}</p>
+                                    </div>
+                                </div>
+                            </div>`;
     }
 
     for (let i = 0; comment.replies.length > i; i++) {
-      this.getHtml(comment.replies[i])
+      this.getHtml(comment.replies[i]);
     }
   }
 
