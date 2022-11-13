@@ -1,0 +1,5 @@
+<button (click)="signIn()" *ngIf="!isLoggedIn()" >Login with Google</button>
+<button (click)="signOut()" *ngIf="isLoggedIn()" >Log out</button>
+<div *ngIf="isLoggedIn()">
+    <p>google-login works!</p>
+</div>

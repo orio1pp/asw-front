@@ -22,6 +22,8 @@ import { SubmissionControllerComponent } from './submission-controller/submissio
 import { SubmissionComponent } from './submission/submission.component';
 import { ThreadsControllerComponent } from './threads-controller/threads-controller.component';
 import { ThreadsComponent } from './threads/threads.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { GoogleLoginComponent } from './google-login/google-login.component'
 
 @NgModule({
   declarations: [
@@ -45,8 +47,9 @@ import { ThreadsComponent } from './threads/threads.component';
     SubmissionControllerComponent,
     ThreadsComponent,
     ThreadsControllerComponent,
+    GoogleLoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, OAuthModule.forRoot()],
   providers: [
     NewestControllerComponent,
     AskControllerComponent,
