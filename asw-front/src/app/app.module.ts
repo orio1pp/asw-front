@@ -22,6 +22,7 @@ import { SubmissionControllerComponent } from './submission-controller/submissio
 import { SubmissionComponent } from './submission/submission.component';
 import { ThreadsControllerComponent } from './threads-controller/threads-controller.component';
 import { ThreadsComponent } from './threads/threads.component';
+import { GoogleControllerComponent } from './google-controller/google-controller.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ThreadsComponent } from './threads/threads.component';
     SubmissionControllerComponent,
     ThreadsComponent,
     ThreadsControllerComponent,
+    GoogleControllerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
