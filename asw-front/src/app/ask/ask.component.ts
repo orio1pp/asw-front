@@ -9,7 +9,7 @@ import { News } from '../modelos/News';
   styleUrls: ['./ask.component.css'],
 })
 export class AskComponent implements OnInit {
-  ask: News[] = [];
+  ask: News[];
 
   constructor(
     private askControllerComponent: AskControllerComponent,
@@ -23,6 +23,7 @@ export class AskComponent implements OnInit {
   }
 
   goToSubmission(id: string): void {
+    console.log(id);
     localStorage.setItem('submission', id);
     this.router.navigate(['submission']);
   }
