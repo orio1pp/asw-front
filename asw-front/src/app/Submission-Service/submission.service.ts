@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Comments } from '../modelos/Comments';
 import { News } from '../modelos/News';
 
 @Injectable({
@@ -16,4 +16,15 @@ export class SubmissionService {
       .toPromise();
     return submission as News;
   }
+
+  public async getComments(idNews:string): Promise<Comments>{
+    let comment = await this.http.get<Comments>(environment.BASE_URL+ "/comment/" +idNews).toPromise()
+    return comment as unknown as Comments
+  }
+
+  public async getCommentaries(idNews:string):Promise<number[]>{
+    let comments = await this.http.get<Comments[]>(environment.BASE_URL+ "/comments/news/" + idNews).toPromise()
+    return comments as unknown as number[]; 
+  }
+
 }
