@@ -2,7 +2,20 @@
   <ul *ngFor="let new of ask" class="news">
     <li class="submission">
       <div class="submission-upper">
-        <a class="submission-title" href="nlink}">{{ new.title }}</a>
+        <a
+          *ngIf="new.type != 'url'"
+          class="submission-title"
+          id="{{ new.itemId }}"
+          #elem
+          (click)="goToSubmission(elem.id)"
+          >{{ new.title }}
+        </a>
+        <a
+          *ngIf="new.type == 'url'"
+          class="submission-title"
+          href="{{ new.page_ }}}"
+          >{{ new.title }}
+        </a>
         <a *ngIf="new.type == 'url'" class="submission-page" href>{{
           new.page_
         }}</a>
