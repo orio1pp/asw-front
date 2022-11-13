@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AskControllerComponent } from './ask-controller/ask-controller.component';
@@ -11,6 +10,14 @@ import { NewestControllerComponent } from './newest-controller/newest-controller
 import { NewestViewComponent } from './newest-view/newest-view.component';
 import { ReplyControllerComponent } from './reply-controller/reply-controller.component';
 import { ReplyComponent } from './reply/reply.component';
+import { SubmitViewComponent } from './submit-view/submit-view.component';
+import { SubmitControllerComponent } from './submit-controller/submit-controller.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { ProfileControllerComponent } from './profile-controller/profile-controller.component';
+import { SubmissionsViewComponent } from './submissions-view/submissions-view.component';
+import { CommentsViewComponent } from './comments-view/comments-view.component';
+import { VotedSubmissionsViewComponent } from './voted-submissions-view/voted-submissions-view.component';
+import { VotedCommentsViewComponent } from './voted-comments-view/voted-comments-view.component';
 import { ShowControllerComponent } from './show-controller/show-controller.component';
 import { ShowComponent } from './show/show.component';
 import { SubmissionControllerComponent } from './submission-controller/submission-controller.component';
@@ -24,6 +31,14 @@ import { ThreadsComponent } from './threads/threads.component';
     NavbarComponent,
     NewestViewComponent,
     NewestControllerComponent,
+    SubmitViewComponent,
+    SubmitControllerComponent,
+    ProfileViewComponent,
+    ProfileControllerComponent,
+    SubmissionsViewComponent,
+    CommentsViewComponent,
+    VotedSubmissionsViewComponent,
+    VotedCommentsViewComponent,
     AskComponent,
     AskControllerComponent,
     ShowComponent,
@@ -39,11 +54,13 @@ import { ThreadsComponent } from './threads/threads.component';
   providers: [
     NewestControllerComponent,
     AskControllerComponent,
+    SubmitControllerComponent,
     ShowControllerComponent,
     SubmissionControllerComponent,
     ThreadsControllerComponent,
     ReplyControllerComponent,
+    ProfileControllerComponent
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
