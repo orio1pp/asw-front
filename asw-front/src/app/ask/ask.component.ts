@@ -9,7 +9,7 @@ import { News } from '../modelos/News';
   styleUrls: ['./ask.component.css'],
 })
 export class AskComponent implements OnInit {
-  ask: News[] = [];
+  ask: News[];
 
   constructor(
     private askControllerComponent: AskControllerComponent,
