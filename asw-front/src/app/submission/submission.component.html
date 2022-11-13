@@ -1,6 +1,7 @@
 <div class="news-wrapper">
   <div class="news-upper">
     <div
+      id="{{ submission?.itemId }}"
       class="{{ likeClass }}"
       alt="heart"
       #elem
@@ -34,5 +35,5 @@
       />
     </form>
   </div>
+  <div [innerHTML]="getCommentSection()"></div>
 </div>
-<div [innerHTML]="getCommentSection()"></div>
