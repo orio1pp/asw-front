@@ -43,11 +43,7 @@ export class ThreadsComponent implements OnInit {
     });
   }
 
-  goToReply(idstr: string) {
-    let id: string = '';
-    for (let i = 0; i < idstr.length; ++i) {
-      if (i > 2) id += idstr[i];
-    }
+  goToReply(id: string) {
     localStorage.setItem('reply', id);
     this.router.navigate(['reply']);
   }

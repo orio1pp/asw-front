@@ -11,8 +11,11 @@ export class SubmissionControllerComponent implements OnInit {
   constructor(private submissionService: SubmissionService) {}
 
   // submission: News = new News();
+  id: number = -1;
 
   ngOnInit(): void {
+    let idstr: string | null = localStorage.getItem('submission');
+    if (typeof idstr === 'string') this.id = +idstr;
     this.getSubmission();
   }
 
@@ -23,8 +26,7 @@ export class SubmissionControllerComponent implements OnInit {
     //   this.submission: News = data;
     // });
     // return this.submission;
-    let id: number = 53;
-    let submission = await this.submissionService.getSubmission(id);
+    let submission = await this.submissionService.getSubmission(this.id);
     return submission;
   }
 }

@@ -2,6 +2,7 @@
   width: 25%;
   margin: 1rem auto;
   margin-top: 3rem;
+  padding: 2rem;
   background-color: #f9f7f7;
   border-radius: 0.35rem;
   display: grid;
@@ -13,12 +14,23 @@
   place-items: center;
 }
 
-#reply-text {
-  margin-bottom: 2rem;
-  height: 20vh;
+#reply-button {
+  width: 5rem;
+  padding: 0.25rem;
+  display: block;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #112d4e;
+  color: white;
 }
 
-#reply-button {
-  width: 30%;
+#reply-button:hover {
+  cursor: pointer;
+}
+
+.textarea-reply {
+  resize: vertical;
   margin-bottom: 2rem;
+  height: 20vh;
+  width: 20rem;
 }

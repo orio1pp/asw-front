@@ -19,12 +19,12 @@
     </div>
     <div class="comment-reply">
       <a
-        id="rep + {{ comment.id }}"
+        id="{{ 'rep' + comment.id }}"
         #elem
         class="reply-btn"
         (click)="goToReply(elem.id)"
-        >reply</a
-      >
+        >reply
+      </a>
     </div>
   </div>
 </ul>

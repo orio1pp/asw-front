@@ -1,12 +1,16 @@
 <div id="reply">
   <form id="reply-form" class="form-section">
-    <textarea onchange="handleChangeReply(value)"></textarea>
+    <textarea
+      #elem
+      (change)="handleChangeReply(elem.value)"
+      class="textarea-reply"
+    ></textarea>
     <input
-      class="submit-btn"
+      class="reply-btn"
       id="reply-button"
       value="Reply"
-      type="submit"
-      onclick="addReply()"
+      type="button"
+      (click)="addReply()"
     />
   </form>
 </div>
