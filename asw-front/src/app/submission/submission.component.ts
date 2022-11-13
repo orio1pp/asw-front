@@ -13,14 +13,15 @@ import { SubmissionControllerComponent } from '../submission-controller/submissi
 })
 export class SubmissionComponent implements OnInit {
   submission: News;
-  comments:Comments[] = []
+  comments: Comments[] = []
   likeClass: string = 'not-liked';
   points: number = 0;
   constructor(
     private submissionControllerComponent: SubmissionControllerComponent
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.htmlcode()
     this.submissionControllerComponent.getSubmission().then((data) => {
       this.submission = data;
 
@@ -39,9 +40,7 @@ export class SubmissionComponent implements OnInit {
     });
   }
 
-  ngOnChange(): void {}
-
-  loadSubmissions() {}
+  loadSubmissions() { }
 
   async likeBtn(btnid: string) {
     let jsonSubmit = {
@@ -61,20 +60,53 @@ export class SubmissionComponent implements OnInit {
     this.likeClass = this.likeClass == 'liked' ? 'not-liked' : 'liked';
     this.points += this.likeClass == 'liked' ? 1 : -1;
   }
-
-  public htmlcode(){
+  commentsection: string = "";
+  getCommentSection(){
+    return this.commentsection
+  }
+  public async htmlcode() {
     let dynamicTemplate = `
     <div>
       <div>[SUPERCHRIS]</div>
     </div>
-  `;
-    let code: string = this.getHtmlCommentaries()
-    dynamicTemplate.replace('[SUPERCHRIS]',code )
+  `
+    let idNews = localStorage.getItem("idNews");
+    idNews = "53"
+    let commentaries;
+    await this.submissionControllerComponent.getCommentaries(idNews).then(data =>{
+      commentaries = data
+    })
+    commentaries = commentaries as unknown as Comments[]
+    for(let i = commentaries.length-1; i>-1; --i){
+      let comment;
+      await this.submissionControllerComponent.getComments(commentaries[i].toString()).then(data => {
+        comment = data
+      })
+      this.getHtml(comment as unknown as Comments)
+    }
+    dynamicTemplate.replace('[SUPERCHRIS]', this.commentsection)
     return dynamicTemplate;
   }
-  
-  private getHtmlCommentaries():string{
-    return "caca";
+
+
+  private getHtml(comment: Comments) {
+    if (comment.replies.length == 0) {
+      this.commentsection += `<div class="reply comment">
+      <div class="comment-info">
+          <p class="comment-points">0 points ${comment.id}</p>
+          <p class="comment-user"> by ${comment.user.username}</p>
+          <p class="comment-date"> at ${comment.time}</p>
+      </div>
+          <div class="comment-body">
+              <p class="comment-date">${comment.body}</p>
+          </div>
+      </div>
+  </div>`;
+    }
+
+    for (let i = 0; comment.replies.length > i; i++) {
+      this.getHtml(comment.replies[i])
+    }
   }
 
   addComment() {
