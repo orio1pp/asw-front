@@ -77,7 +77,7 @@ export class SubmissionComponent implements OnInit {
       commentaries = data
     })
     commentaries = commentaries as unknown as Comments[]
-    for(let i = 0; commentaries.length>i; i++){
+    for(let i = commentaries.length-1; i>-1; --i){
       let comment;
       await this.submissionControllerComponent.getComments(commentaries[i].toString()).then(data => {
         comment = data
