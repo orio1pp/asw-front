@@ -19,6 +19,7 @@ export class SubmissionComponent implements OnInit {
   points: number = 0;
   likeClassComments: Map<number, string> = new Map<number, string>();
   pointsComments: Map<number, number> = new Map<number, number>();
+  commentId: string[] = [];
 
   constructor(
     private submissionControllerComponent: SubmissionControllerComponent
@@ -45,6 +46,18 @@ export class SubmissionComponent implements OnInit {
         }
       });
       this.htmlcode();
+      console.log(this.commentId.length);
+      for (let m = 0; m < this.commentId.length; m++) {
+        const elem = document.getElementById(this.commentId[m]);
+        console.log(elem);
+        if (elem != null) {
+          console.log(elem);
+          elem.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.likeBtnComment();
+          });
+        }
+      }
     }
   }
 
@@ -67,7 +80,8 @@ export class SubmissionComponent implements OnInit {
     this.points += this.likeClass == 'liked' ? 1 : -1;
   }
 
-  async likeBtnComment(id: string) {
+  async likeBtnComment() {
+    let id: string = '';
     let jsonSubmit = {
       username: localStorage.getItem('username'),
     };
@@ -181,26 +195,15 @@ export class SubmissionComponent implements OnInit {
                               </div>`;
       const elem = document.getElementsByClassName('not-liked');
       for (let n = 0; n < elem.length; n++) {
-        if (elem[n].classList.length > 1) {
-          elem[n].id = elem[n].classList[1];
-          elem[n].addEventListener('click', (e) => {
-            console.log(elem[n]);
-            e.preventDefault();
-            this.likeBtnComment(elem[n].id);
-          });
-        }
+        console.log(elem[n].classList.length);
+        elem[n].id = elem[n].classList[1];
+        this.commentId.push(elem[n].id);
       }
 
       const elem2 = document.getElementsByClassName('liked');
-      for (let n = 0; n < elem2.length; n++) {
-        if (elem2[n].classList.length > 1) {
-          elem2[n].id = elem2[n].classList[1];
-          elem2[n].addEventListener('click', (e) => {
-            console.log(elem2[n]);
-            e.preventDefault();
-            this.likeBtnComment(elem2[n].id);
-          });
-        }
+      for (let s = 0; s < elem2.length; s++) {
+        elem2[s].id = elem2[s].classList[1];
+        this.commentId.push(elem2[s].id);
       }
       /*`
                           <div class="${left}">
@@ -241,7 +244,6 @@ export class SubmissionComponent implements OnInit {
                                     alt="heart"
                                     #elem
                                     class="${likeClassCom} ${idstr}"
-                                    onclick ="likeBtnComment(elem.class)"
                                   ></div>
                                   <p class="comment-points">0 points</p>
                                   <p class="comment-user">
@@ -262,6 +264,21 @@ export class SubmissionComponent implements OnInit {
                                   </a>
                                 </div>
                               </div>`;
+      const elem = document.getElementsByClassName('not-liked');
+      for (let n = 0; n < elem.length; n++) {
+        if (elem[n].classList.length > 1) {
+          elem[n].id = elem[n].classList[1];
+          this.commentId.push(elem[n].id);
+        }
+      }
+
+      const elem2 = document.getElementsByClassName('liked');
+      for (let n = 0; n < elem2.length; n++) {
+        if (elem2[n].classList.length > 1) {
+          elem2[n].id = elem2[n].classList[1];
+          this.commentId.push(elem2[n].id);
+        }
+      }
       this.getHtml(comment.replies[i], margin + 3);
     }
   }
