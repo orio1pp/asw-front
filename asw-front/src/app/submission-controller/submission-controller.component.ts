@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Comments } from '../modelos/Comments';
 import { News } from '../modelos/News';
 import { SubmissionService } from '../Submission-Service/submission.service';
 
@@ -26,5 +27,20 @@ export class SubmissionControllerComponent implements OnInit {
     let id: number = 53;
     let submission = await this.submissionService.getSubmission(id);
     return submission;
+  }
+
+  public async getComments(idNews:string): Promise<Comments>{
+    let comment;
+    await this.submissionService.getComments(idNews).then(data =>{
+      comment = data
+    })
+    return comment as unknown as Comments;
+  }
+  public async getCommentaries(idNews:string):Promise<number[]>{
+    let commentaries;
+    await this.submissionService.getCommentaries(idNews).then(data =>{
+      commentaries = data
+    })
+    return commentaries as unknown as number[];
   }
 }
