@@ -8,6 +8,8 @@ import { AskComponent } from './ask/ask.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NewestControllerComponent } from './newest-controller/newest-controller.component';
 import { NewestViewComponent } from './newest-view/newest-view.component';
+import { ReplyControllerComponent } from './reply-controller/reply-controller.component';
+import { ReplyComponent } from './reply/reply.component';
 import { SubmitViewComponent } from './submit-view/submit-view.component';
 import { SubmitControllerComponent } from './submit-controller/submit-controller.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
@@ -45,6 +47,8 @@ import { ThreadsComponent } from './threads/threads.component';
     SubmissionControllerComponent,
     ThreadsComponent,
     ThreadsControllerComponent,
+    ReplyComponent,
+    ReplyControllerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
@@ -54,6 +58,7 @@ import { ThreadsComponent } from './threads/threads.component';
     ShowControllerComponent,
     SubmissionControllerComponent,
     ThreadsControllerComponent,
+    ReplyControllerComponent,
     ProfileControllerComponent
   ],
   bootstrap: [AppComponent]

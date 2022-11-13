@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AskComponent } from './ask/ask.component';
 import { CommentsViewComponent } from './comments-view/comments-view.component';
 import { NewestViewComponent } from './newest-view/newest-view.component';
+import { ReplyComponent } from './reply/reply.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { ShowComponent } from './show/show.component';
 import { SubmissionComponent } from './submission/submission.component';
@@ -18,6 +19,9 @@ const routes: Routes = [
   {path: 'ask', component: AskComponent },
   {path: 'profile-view', component: ProfileViewComponent},
   {path: 'show', component: ShowComponent },
+  { path: 'submission', component: SubmissionComponent },
+  { path: 'threads', component: ThreadsComponent },
+  { path: 'reply', component: ReplyComponent },
   {path: 'submissions', component: SubmissionsViewComponent},
   {path: 'comments', component: CommentsViewComponent},
   {path: 'votedSubmissions', component: VotedSubmissionsViewComponent},
