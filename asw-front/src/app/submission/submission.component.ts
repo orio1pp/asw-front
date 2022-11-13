@@ -17,8 +17,8 @@ export class SubmissionComponent implements OnInit {
 
   likeClass: string = 'not-liked';
   points: number = 0;
-  likesPoints: [] = [];
-  commentPoints: [] = [];
+  likeClassComments: Map<number, string> = new Map<number, string>();
+  pointsComments: Map<number, number> = new Map<number, number>();
 
   constructor(
     private submissionControllerComponent: SubmissionControllerComponent
@@ -66,6 +66,39 @@ export class SubmissionComponent implements OnInit {
     this.likeClass = this.likeClass == 'liked' ? 'not-liked' : 'liked';
     this.points += this.likeClass == 'liked' ? 1 : -1;
   }
+
+  async likeBtnComment(id: string) {
+    let jsonSubmit = {
+      username: localStorage.getItem('username'),
+    };
+    console.log(id);
+
+    const response = await fetch(
+      environment.BASE_URL + '/comment/' + id + '/like',
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonSubmit),
+      }
+    );
+
+    let numid: number = +id;
+
+    this.likeClassComments.set(
+      numid,
+      this.likeClassComments.get(numid) == 'liked' ? 'not-liked' : 'liked'
+    );
+
+    let pointsDiff: number =
+      this.likeClassComments.get(numid) == 'liked' ? 1 : -1;
+    let currentPoints: number | undefined = this.pointsComments.get(numid);
+    if (typeof currentPoints === 'number') {
+      this.pointsComments.set(numid, currentPoints + pointsDiff);
+    }
+  }
+
   commentsection: string = '';
   getCommentSection() {
     return this.commentsection;
@@ -93,6 +126,7 @@ export class SubmissionComponent implements OnInit {
           .then((data) => {
             comment = data;
           });
+
         this.getHtml(comment as unknown as Comments, 0);
       }
       dynamicTemplate.replace('[SUPERCHRIS]', this.commentsection);
@@ -101,22 +135,32 @@ export class SubmissionComponent implements OnInit {
   }
 
   private getHtml(comment: Comments, margin: number) {
+    let id = comment.id;
     const left = 'com' + margin.toString();
     const rep = 'rep' + comment.id.toString();
-    console.log(rep);
+    let points = comment.likedBy.length;
+    this.pointsComments.set(comment.id, points);
+
+    let found: Boolean = false;
+    this.likeClassComments.set(id, 'not-liked');
+    for (let j = 0; j < comment.likedBy.length && !found; j++) {
+      if (comment.likedBy[j].username === localStorage.getItem('username')) {
+        this.likeClassComments.set(id, 'liked');
+        found = true;
+      }
+    }
+    let likeClassCom = this.likeClassComments.get(comment.id);
+    let idstr = 'a' + id.toString();
+
     if (comment.replies.length == 0) {
       this.commentsection += `<div class="comment ${left}">
                                 <div class="comment-info">
                                   <div
-                                    id="${comment.id}"
                                     alt="heart"
                                     #elem
-                                    (click)="likeBtn(elem.id)"
-                                    class="{{ likeClass.get(comment.id) }}"
+                                    class="${likeClassCom} ${idstr}"
                                   ></div>
-                                  <p class="comment-points">${
-                                    this.commentPoints[comment.id]
-                                  } points</p>
+                                  <p class="comment-points">0 points</p>
                                   <p class="comment-user">
                                     by <span>${comment.user.username}</span>
                                   </p>
@@ -135,7 +179,29 @@ export class SubmissionComponent implements OnInit {
                                   </a>
                                 </div>
                               </div>`;
+      const elem = document.getElementsByClassName('not-liked');
+      for (let n = 0; n < elem.length; n++) {
+        if (elem[n].classList.length > 1) {
+          elem[n].id = elem[n].classList[1];
+          elem[n].addEventListener('click', (e) => {
+            console.log(elem[n]);
+            e.preventDefault();
+            this.likeBtnComment(elem[n].id);
+          });
+        }
+      }
 
+      const elem2 = document.getElementsByClassName('liked');
+      for (let n = 0; n < elem2.length; n++) {
+        if (elem2[n].classList.length > 1) {
+          elem2[n].id = elem2[n].classList[1];
+          elem2[n].addEventListener('click', (e) => {
+            console.log(elem2[n]);
+            e.preventDefault();
+            this.likeBtnComment(elem2[n].id);
+          });
+        }
+      }
       /*`
                           <div class="${left}">
                             <div class="reply comment">
@@ -153,6 +219,49 @@ export class SubmissionComponent implements OnInit {
     }
 
     for (let i = 0; comment.replies.length > i; i++) {
+      let id = comment.id;
+      const left = 'com' + margin.toString();
+      const rep = 'rep' + comment.id.toString();
+      let points = comment.likedBy.length;
+      this.pointsComments.set(comment.id, points);
+
+      let found: Boolean = false;
+      this.likeClassComments.set(id, 'not-liked');
+      for (let j = 0; j < comment.likedBy.length && !found; j++) {
+        if (comment.likedBy[j].username === localStorage.getItem('username')) {
+          this.likeClassComments.set(id, 'liked');
+          found = true;
+        }
+      }
+      let likeClassCom = this.likeClassComments.get(comment.id);
+
+      this.commentsection += `<div class="comment ${left}">
+                                <div class="comment-info">
+                                  <div
+                                    alt="heart"
+                                    #elem
+                                    class="${likeClassCom} ${idstr}"
+                                    onclick ="likeBtnComment(elem.class)"
+                                  ></div>
+                                  <p class="comment-points">0 points</p>
+                                  <p class="comment-user">
+                                    by <span>${comment.user.username}</span>
+                                  </p>
+                                  <p class="comment-date">at ${comment.time}</p>
+                                </div>
+                                <div class="comment-body">
+                                  <p class="comment-text">${comment.body}</p>
+                                </div>
+                                <div class="comment-reply">
+                                  <a
+                                    id=${rep}
+                                    #elem
+                                    class="reply-btn"
+                                    (click)="goToReply(elem.id)"
+                                    >reply
+                                  </a>
+                                </div>
+                              </div>`;
       this.getHtml(comment.replies[i], margin + 3);
     }
   }

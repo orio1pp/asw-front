@@ -86,3 +86,25 @@
 :host ::ng-deep .com30 {
   margin-left: 30rem;
 }
+
+:host ::ng-deep .not-liked {
+  display: block;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 1rem;
+  border: none;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-image: url("../../assets/heart-regular.svg");
+}
+
+:host ::ng-deep .liked {
+  display: block;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 1rem;
+  border: none;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-image: url("../../assets/heart-solid.svg");
+}
