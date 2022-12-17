@@ -10,7 +10,11 @@ import { ProfileControllerComponent } from '../profile-controller/profile-contro
 export class ProfileViewComponent implements OnInit {
 
   constructor(private profileControllerComponent:ProfileControllerComponent,
-    private router: Router) { }
+    private router: Router) { 
+      console.log("coca")
+      localStorage.setItem('username', 'OriolPortellPareras')
+      localStorage.setItem('apiKey', '$2a$10$aewuyT6AwlSy3ySyIAkGx.3HhfYeLDaDP56RuJDtd3GDLNP5whcBO')
+    }
   user:any;
   ngOnInit(): void {
     this.getUser()
