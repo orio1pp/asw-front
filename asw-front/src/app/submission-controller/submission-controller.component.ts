@@ -46,4 +46,8 @@ export class SubmissionControllerComponent implements OnInit {
     });
     return commentaries as unknown as number[];
   }
+
+  public async setCommentaries(idNews: string, text:string){
+    this.submissionService.setCommentaries(idNews, text)
+  }
 }
