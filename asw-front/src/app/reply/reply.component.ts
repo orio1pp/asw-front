@@ -22,22 +22,34 @@ export class ReplyComponent implements OnInit {
   }
 
   async addReply(): Promise<void> {
+    let text: string = (document.getElementById('text') as HTMLInputElement).value;
+    console.log(text)
+    let name = localStorage.getItem('username') as string;
+    let key = localStorage.getItem('apiKey') as string;
+    let commentId = localStorage.getItem("commentary") as unknown as number
     let jsonSubmit = {
-      user: {
-        username: localStorage.getItem('username'),
-      },
-      body: this.replyText,
+      id: commentId,
+      comment:{
+        user:{
+          username: name
+        },
+          body:text,
+          replies: [],
+          likedBy:[]
+      
+      }
     };
 
     let id: string | null = localStorage.getItem('reply');
 
-    console.log(environment.BASE_URL + '/news/' + id + '/reply');
     const response = await fetch(
-      environment.BASE_URL + '/news/' + id + '/reply',
+      environment.BASE_URL + '/news/reply',
       {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          username: name,
+          apiKey: key
         },
         body: JSON.stringify(jsonSubmit),
       }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Comments } from '../modelos/Comments';
@@ -22,7 +23,8 @@ export class SubmissionComponent implements OnInit {
   commentId: string[] = [];
 
   constructor(
-    private submissionControllerComponent: SubmissionControllerComponent
+    private submissionControllerComponent: SubmissionControllerComponent,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -172,7 +174,8 @@ export class SubmissionComponent implements OnInit {
     let idstr = 'a' + id.toString();
 
     if (comment.replies.length == 0) {
-      this.commentsection += `<div class="comment ${left}">
+      this.commentsection += `
+      <div class="comment ${left}">
                                 <div class="comment-info">
                                   <div
                                     alt="heart"
@@ -209,20 +212,6 @@ export class SubmissionComponent implements OnInit {
         elem2[s].id = elem2[s].classList[1];
         this.commentId.push(elem2[s].id);
       }
-      /*`
-                          <div class="${left}">
-                            <div class="reply comment">
-                                <div class="comment-info">
-                                    <p class="comment-points">0 points ${comment.id}</p>
-                                    <p class="comment-user"> by <span class="comment-user-span">${comment.user.username}</span></p>
-                                    <p class="comment-date"> at ${comment.time}</p>
-                                </div>
-                                    <div class="comment-body">
-                                        <p>${comment.body}</p>
-                                    </div>
-                                </div>
-                            </div>
-                          </div>`;*/
     }
 
     for (let i = 0; comment.replies.length > i; i++) {
@@ -290,5 +279,10 @@ export class SubmissionComponent implements OnInit {
   addComment() {
     let title: string = (document.getElementById('text') as HTMLInputElement).value;
     this.submissionControllerComponent.setCommentaries(localStorage.getItem('submission') as string, title)
+  }
+
+  goToReply(id: string){
+    localStorage.setItem('commentary', id);
+    this.router.navigate(['reply']);
   }
 }

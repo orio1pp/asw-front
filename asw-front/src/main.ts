@@ -14,5 +14,5 @@ platformBrowserDynamic()
 localStorage.setItem('username', 'oriol');
 localStorage.setItem(
   'apiKey',
-  '$2a$10$i2iYomR/DDqAO8lfxkDVZOvsi3pSVNX/NsGuqHQbJ46ZlHchQPBxi'
+  '$2a$10$3aSzc5HSMTGnJTlX8wGDvu.ucQezvicn36bvoENYw6/BsV/v7ndxS'
 );

@@ -44,21 +44,29 @@ export class ThreadsComponent implements OnInit {
   }
 
   goToReply(id: string) {
-    localStorage.setItem('reply', id);
+    localStorage.setItem('commentary', id);
     this.router.navigate(['reply']);
   }
 
   async likeBtn(id: string) {
+    let name = localStorage.getItem('username') as string;
+    let key = localStorage.getItem('apiKey') as string;
+    var newsId = id as unknown as number
     let jsonSubmit = {
-      username: localStorage.getItem('username'),
+      user:{
+        username: localStorage.getItem('username') as string,
+      },
+      id: newsId 
     };
 
     const response = await fetch(
-      environment.BASE_URL + '/comment/' + id + '/like',
+      environment.BASE_URL + '/comment/like',
       {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          username: name,
+          apiKey: key,
         },
         body: JSON.stringify(jsonSubmit),
       }

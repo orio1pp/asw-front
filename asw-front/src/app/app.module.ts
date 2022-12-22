@@ -26,6 +26,7 @@ import { ThreadsControllerComponent } from './threads-controller/threads-control
 import { ThreadsComponent } from './threads/threads.component';
 import { VotedCommentsViewComponent } from './voted-comments-view/voted-comments-view.component';
 import { VotedSubmissionsViewComponent } from './voted-submissions-view/voted-submissions-view.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { VotedSubmissionsViewComponent } from './voted-submissions-view/voted-su
     ReplyControllerComponent,
     HomeComponent,
     HomeControllerComponent,
+    CommentComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
