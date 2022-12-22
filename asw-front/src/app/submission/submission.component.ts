@@ -46,12 +46,10 @@ export class SubmissionComponent implements OnInit {
         }
       });
       this.htmlcode();
-      console.log(this.commentId.length);
+
       for (let m = 0; m < this.commentId.length; m++) {
         const elem = document.getElementById(this.commentId[m]);
-        console.log(elem);
         if (elem != null) {
-          console.log(elem);
           elem.addEventListener('click', (e) => {
             e.preventDefault();
             this.likeBtnComment();
@@ -62,20 +60,27 @@ export class SubmissionComponent implements OnInit {
   }
 
   async likeBtn(btnid: string) {
+    let name = localStorage.getItem('username');
+    let key = localStorage.getItem('apiKey');
+
     let jsonSubmit = {
-      username: localStorage.getItem('username'),
+      user: {
+        username: name,
+      },
+      id: btnid,
     };
 
-    const response = await fetch(
-      environment.BASE_URL + '/news/' + btnid + '/like',
-      {
+    if (typeof name === 'string' && typeof key === 'string') {
+      const response = await fetch(environment.BASE_URL + '/news/like', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          username: name,
+          apiKey: key,
         },
         body: JSON.stringify(jsonSubmit),
-      }
-    );
+      });
+    }
     this.likeClass = this.likeClass == 'liked' ? 'not-liked' : 'liked';
     this.points += this.likeClass == 'liked' ? 1 : -1;
   }
@@ -85,7 +90,6 @@ export class SubmissionComponent implements OnInit {
     let jsonSubmit = {
       username: localStorage.getItem('username'),
     };
-    console.log(id);
 
     const response = await fetch(
       environment.BASE_URL + '/comment/' + id + '/like',
@@ -195,7 +199,6 @@ export class SubmissionComponent implements OnInit {
                               </div>`;
       const elem = document.getElementsByClassName('not-liked');
       for (let n = 0; n < elem.length; n++) {
-        console.log(elem[n].classList.length);
         elem[n].id = elem[n].classList[1];
         this.commentId.push(elem[n].id);
       }
