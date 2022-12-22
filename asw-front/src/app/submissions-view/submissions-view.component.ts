@@ -16,8 +16,8 @@ export class SubmissionsViewComponent implements OnInit {
   }
 
   private getSubmissions(){
-    let username = localStorage.getItem("username");
-    this.profileControllerComponent.getSubmissions("oriol").then(data =>{
+    let username = localStorage.getItem("username") as string;
+    this.profileControllerComponent.getSubmissions(username).then(data =>{
       this.news = data
     })
   }
