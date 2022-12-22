@@ -29,7 +29,7 @@ export class ProfileService {
 
   public submit(user: any) {
     var myheaders = { headers: this.getHeaders() };
-    this.http.post<any>(environment.BASE_URL + '/userk', user).subscribe();
+    this.http.post<any>(environment.BASE_URL + '/user', user, myheaders).subscribe();
   }
 
   public async getSubmissions(username: string): Promise<News[]> {

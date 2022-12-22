@@ -64,6 +64,7 @@ export class ProfileViewComponent implements OnInit {
       about: about,
       showdead: showdead,
       noprocrast: noprocrast,
+      apiKey : localStorage.getItem("apiKey")
     };
     if (
       this.dataCorrectForm(maxvisit, minaway, delay) &&
