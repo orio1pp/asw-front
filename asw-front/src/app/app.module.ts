@@ -54,8 +54,7 @@ import { VotedSubmissionsViewComponent } from './voted-submissions-view/voted-su
     ReplyComponent,
     ReplyControllerComponent,
     HomeComponent,
-    HomeControllerComponent,
-    CommentComponent,
+    HomeControllerComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
