@@ -74,7 +74,7 @@ export class ProfileViewComponent implements OnInit {
     } else alert('Max visit, Min away and delay must be numbers');
   }
   public getUserSubmissions() {
-    this.router.navigate(['submissions']);
+    this.router.navigate(['my-submissions']);
   }
 
   public getUserComments() {

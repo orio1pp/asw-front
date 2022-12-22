@@ -8,6 +8,8 @@ import { AskComponent } from './ask/ask.component';
 import { CommentsViewComponent } from './comments-view/comments-view.component';
 import { HomeControllerComponent } from './home-controller/home-controller.component';
 import { HomeComponent } from './home/home.component';
+import { MySubmissionsControllerComponent } from './my-submissions-controller/my-submissions-controller.component';
+import { MySubmissiosComponent } from './my-submissios/my-submissios.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NewestControllerComponent } from './newest-controller/newest-controller.component';
 import { NewestViewComponent } from './newest-view/newest-view.component';
@@ -26,7 +28,6 @@ import { ThreadsControllerComponent } from './threads-controller/threads-control
 import { ThreadsComponent } from './threads/threads.component';
 import { VotedCommentsViewComponent } from './voted-comments-view/voted-comments-view.component';
 import { VotedSubmissionsViewComponent } from './voted-submissions-view/voted-submissions-view.component';
-import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { CommentComponent } from './comment/comment.component';
     ReplyControllerComponent,
     ProfileControllerComponent,
     HomeControllerComponent,
+    MySubmissionsControllerComponent,
   ],
   bootstrap: [AppComponent],
 })
