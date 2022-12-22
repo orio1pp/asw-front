@@ -8,6 +8,8 @@ import { AskComponent } from './ask/ask.component';
 import { CommentsViewComponent } from './comments-view/comments-view.component';
 import { HomeControllerComponent } from './home-controller/home-controller.component';
 import { HomeComponent } from './home/home.component';
+import { MySubmissionsControllerComponent } from './my-submissions-controller/my-submissions-controller.component';
+import { MySubmissiosComponent } from './my-submissios/my-submissios.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NewestControllerComponent } from './newest-controller/newest-controller.component';
 import { NewestViewComponent } from './newest-view/newest-view.component';
@@ -53,6 +55,8 @@ import { VotedSubmissionsViewComponent } from './voted-submissions-view/voted-su
     ReplyControllerComponent,
     HomeComponent,
     HomeControllerComponent,
+    MySubmissiosComponent,
+    MySubmissionsControllerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
@@ -65,6 +69,7 @@ import { VotedSubmissionsViewComponent } from './voted-submissions-view/voted-su
     ReplyControllerComponent,
     ProfileControllerComponent,
     HomeControllerComponent,
+    MySubmissionsControllerComponent,
   ],
   bootstrap: [AppComponent],
 })
