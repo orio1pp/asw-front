@@ -62,12 +62,13 @@ export class SubmissionComponent implements OnInit {
   async likeBtn(btnid: string) {
     let name = localStorage.getItem('username');
     let key = localStorage.getItem('apiKey');
+    let newsId = localStorage.getItem("submission")
 
     let jsonSubmit = {
       user: {
         username: name,
       },
-      id: btnid,
+      id: newsId,
     };
 
     if (typeof name === 'string' && typeof key === 'string') {
