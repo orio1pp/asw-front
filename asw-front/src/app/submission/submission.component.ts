@@ -287,6 +287,7 @@ export class SubmissionComponent implements OnInit {
   }
 
   addComment() {
-    let id: number;
+    let title: string = (document.getElementById('text') as HTMLInputElement).value;
+    this.submissionControllerComponent.setCommentaries(localStorage.getItem('submission') as string, title)
   }
 }

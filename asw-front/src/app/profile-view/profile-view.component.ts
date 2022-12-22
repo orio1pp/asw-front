@@ -19,7 +19,8 @@ export class ProfileViewComponent implements OnInit {
   }
 
   getUser() {
-    this.profileControllerComponent.getProfile('a').then((data) => {
+    let username:string = localStorage.getItem("username") as string
+    this.profileControllerComponent.getProfile(username).then((data) => {
       this.user = data;
     });
   }
@@ -40,7 +41,6 @@ export class ProfileViewComponent implements OnInit {
 
   public getInfoUser() {
     let username = localStorage.getItem('username');
-    username = 'a';
     var created = (document.getElementById('created') as HTMLInputElement)
       .value;
     var karma = (document.getElementById('karma') as HTMLInputElement).value;

@@ -40,4 +40,31 @@ export class SubmissionService {
       .toPromise();
     return comments as unknown as number[];
   }
+
+  public async setCommentaries(idNews: string, text:string){
+    var myheaders = {headers:this.getHeaders()}
+    var username = localStorage.getItem("username") as string
+    var apiKey = localStorage.getItem("apiKey") as string
+    var body = {
+      id: idNews,
+      comment:{
+        user:{
+          username: username
+        },
+        body: text,
+        replies: [],
+        likedBy: []
+      }
+    }
+    console.log(body)
+    const response = await fetch(environment.BASE_URL + '/news/newcomment', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        username: username,
+        apiKey: apiKey,
+      },
+      body: JSON.stringify(body),
+    });
+  }
 }
