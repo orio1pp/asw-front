@@ -8,5 +8,11 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch((err) => console.error(err));
+localStorage.setItem('username', 'a');
+localStorage.setItem(
+  'apiKey',
+  '$2a$10$qTCgKY4zTmr.ff39e9/lbusDClZTP14BTrwyWoVQ8Iz1/P6Ahx50m'
+);
