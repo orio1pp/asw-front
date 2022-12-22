@@ -5,76 +5,86 @@ import { ProfileControllerComponent } from '../profile-controller/profile-contro
 @Component({
   selector: 'app-profile-view',
   templateUrl: './profile-view.component.html',
-  styleUrls: ['./profile-view.component.css']
+  styleUrls: ['./profile-view.component.css'],
 })
 export class ProfileViewComponent implements OnInit {
+  constructor(
+    private profileControllerComponent: ProfileControllerComponent,
+    private router: Router
+  ) {}
 
-  constructor(private profileControllerComponent:ProfileControllerComponent,
-    private router: Router) { }
-  user:any;
+  user: any;
   ngOnInit(): void {
-    this.getUser()
+    this.getUser();
   }
 
-  getUser(){
-    this.profileControllerComponent.getProfile("oriolportellpareras").then(data => {
+  getUser() {
+    this.profileControllerComponent.getProfile('a').then((data) => {
       this.user = data;
-    })
-    
+    });
   }
 
-  dataCorrectForm(maxvisit:string, minaway:string, delay:string){
-    return !isNaN(Number(maxvisit)) && !isNaN(Number(minaway)) && !isNaN(Number(delay))
+  dataCorrectForm(maxvisit: string, minaway: string, delay: string) {
+    return (
+      !isNaN(Number(maxvisit)) &&
+      !isNaN(Number(minaway)) &&
+      !isNaN(Number(delay))
+    );
   }
 
-  aboutCorrectSize(about:string){
-      var regex = /\S/g;
-      var length = about.split(regex).length - 1
-      return length<255
+  aboutCorrectSize(about: string) {
+    var regex = /\S/g;
+    var length = about.split(regex).length - 1;
+    return length < 255;
   }
 
-  public getInfoUser(){
-    let username = localStorage.getItem("username")
-    username = "oriolportellpareras"
-    var created = (document.getElementById("created") as HTMLInputElement).value
-    var karma = (document.getElementById("karma") as HTMLInputElement).value
-    var maxvisit = (document.getElementById("maxvisit") as HTMLInputElement).value 
-    var minaway = (document.getElementById("minaway") as HTMLInputElement).value 
-    var delay = (document.getElementById("delay") as HTMLInputElement).value 
-    var about = (document.getElementById("about") as HTMLInputElement).value
-    var showdead = (document.getElementById("showdead") as HTMLInputElement).checked
-    var noprocrast = (document.getElementById("noprocrast") as HTMLInputElement).checked
+  public getInfoUser() {
+    let username = localStorage.getItem('username');
+    username = 'a';
+    var created = (document.getElementById('created') as HTMLInputElement)
+      .value;
+    var karma = (document.getElementById('karma') as HTMLInputElement).value;
+    var maxvisit = (document.getElementById('maxvisit') as HTMLInputElement)
+      .value;
+    var minaway = (document.getElementById('minaway') as HTMLInputElement)
+      .value;
+    var delay = (document.getElementById('delay') as HTMLInputElement).value;
+    var about = (document.getElementById('about') as HTMLInputElement).value;
+    var showdead = (document.getElementById('showdead') as HTMLInputElement)
+      .checked;
+    var noprocrast = (document.getElementById('noprocrast') as HTMLInputElement)
+      .checked;
     let request = {
-        username: username,
-        created: created,
-        karma: karma,
-        maxvisit: maxvisit,
-        minaway:minaway,
-        delay:delay,
-        about:about,
-        showdead:showdead,
-        noprocrast:noprocrast
+      username: username,
+      created: created,
+      karma: karma,
+      maxvisit: maxvisit,
+      minaway: minaway,
+      delay: delay,
+      about: about,
+      showdead: showdead,
+      noprocrast: noprocrast,
     };
-    if(this.dataCorrectForm(maxvisit, minaway, delay) && this.aboutCorrectSize(about)){
-      this.profileControllerComponent.submit(request)
-    }
-    else alert("Max visit, Min away and delay must be numbers")
+    if (
+      this.dataCorrectForm(maxvisit, minaway, delay) &&
+      this.aboutCorrectSize(about)
+    ) {
+      this.profileControllerComponent.submit(request);
+    } else alert('Max visit, Min away and delay must be numbers');
   }
-  public getUserSubmissions(){
-    this.router.navigate(['submissions'])
+  public getUserSubmissions() {
+    this.router.navigate(['submissions']);
   }
 
-  public getUserComments(){
+  public getUserComments() {
     this.router.navigate(['comments']);
   }
 
-  public getVotedSubmissions(){
-    this.router.navigate(['votedSubmissions'])
+  public getVotedSubmissions() {
+    this.router.navigate(['votedSubmissions']);
   }
 
-  public getVotedComments(){
-    this.router.navigate(['votedComments'])
+  public getVotedComments() {
+    this.router.navigate(['votedComments']);
   }
-
-
 }

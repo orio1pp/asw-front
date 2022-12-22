@@ -10,7 +10,8 @@ import { ProfileService } from '../profile-service/profile.service';
 })
 export class ProfileControllerComponent implements OnInit {
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService) { 
+  }
   ngOnInit(): void {
   }
 
